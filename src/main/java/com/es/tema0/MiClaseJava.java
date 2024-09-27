@@ -1,9 +1,6 @@
 package com.es.tema0;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 public class MiClaseJava {
 
@@ -126,6 +123,49 @@ public class MiClaseJava {
             System.out.print(key +": ");
             System.out.println(listin.get(key));
         }
+
+
+        List<Integer> myArrayList = new ArrayList<>();
+        myArrayList.add(0);
+        myArrayList.add(1);
+        myArrayList.add(2);
+        myArrayList.add(3);
+
+        myArrayList.remove(2);
+
+        //myArrayList.stream().forEach(System.out::println);
+        myArrayList.stream().filter( it -> it > 1).forEach(System.out::println);
+        var contains = myArrayList.contains(2);
+
+        System.out.println(contains);
+
+        var indexOf2 = myArrayList.indexOf(2);
+        var indexOf1 = myArrayList.indexOf(1);
+
+        System.out.println(indexOf2);
+        System.out.println(indexOf1);
+
+        myArrayList.stream().forEach(System.out::print);
+
+        System.out.println();
+        List<String> myLinkedList = new LinkedList<>();
+
+        myLinkedList.add("Diego");
+        myLinkedList.add("Pepe");
+        myLinkedList.add("ge");
+        myLinkedList.add("hola");
+
+
+        myLinkedList.stream().forEach(System.out::println);
+
+
+        var listaNum = List.of(1, 2, 3);
+
+
+        var listaDoble = listaNum.stream().map( i -> i*2).toList();
+
+        var x = 1.21;
+        System.out.println(Double.class.isInstance(x));
 
 
     }
