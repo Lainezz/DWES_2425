@@ -1,4 +1,4 @@
-package com.es.tema1.ejercicioLogin.clases;
+package com.es.tema1.ejerLogin.clases;
 
 import java.util.Objects;
 
@@ -34,7 +34,7 @@ public class Persona  {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Persona persona = (Persona) o;
-        return nombre.equals(persona.nombre) && pass.equals(persona.pass);
+        return nombre.equals(persona.nombre);
     }
 
     @Override

@@ -1,6 +1,6 @@
-package com.es.tema1.ejercicioLogin;
+package com.es.tema1.ejerLogin;
 
-import com.es.tema1.ejercicioLogin.clases.Persona;
+import com.es.tema1.ejerLogin.clases.Persona;
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -51,6 +51,7 @@ public class App {
         } while (!flag);
 
         System.out.println("Bienvenid@");
+
 
 
 
