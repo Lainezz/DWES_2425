@@ -16,7 +16,7 @@ public class UserService {
 
         // Comprobar que el usuario existe en la base de datos
         // TODO: Llamar al método del Repository .getUser()
-        UserRepository userRepository = new UserRepository(null);
+        UserRepository userRepository = new UserRepository();
         User u = userRepository.findUser(nombre);
         if(u == null) {
             return false;

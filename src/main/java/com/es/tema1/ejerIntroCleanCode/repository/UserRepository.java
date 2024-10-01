@@ -1,6 +1,5 @@
 package com.es.tema1.ejerIntroCleanCode.repository;
 
-import com.es.tema1.ejerIntroCleanCode.clases.ResponseEntity;
 import com.es.tema1.ejerIntroCleanCode.clases.User;
 
 import java.util.ArrayList;
@@ -8,12 +7,16 @@ import java.util.ArrayList;
 public class UserRepository {
 
     // ArrayList que simula una tabla de User dentro de una base de datos
-    private ArrayList<User> bddUsuarios;
+    private ArrayList<User> bddUsers;
 
     // Constructor, simplemente inicializo el ArrayList
-    public UserRepository(ArrayList<User> bddUsuarios) {
-        if (bddUsuarios != null) this.bddUsuarios = bddUsuarios;
-        else this.bddUsuarios = new ArrayList<>();
+    public UserRepository() {
+        bddUsers.add(new User("Diego", "1234"));
+        bddUsers.add(new User("Juan", "1234"));
+        bddUsers.add(new User("Paco", "1234"));
+        bddUsers.add(new User("Maria", "123456"));
+        bddUsers.add(new User("xPeke", "backdoor"));
+        bddUsers.add(new User("Caps", "Overrated"));
     }
 
 
@@ -21,17 +24,17 @@ public class UserRepository {
     REPOSITORY SÓLO SE ENCARGA DE ACCESOS A LA BASE DE DATOS
      */
     public User findUser(String nombre) {
-        for (User u: bddUsuarios) {
+        for (User u: bddUsers) {
             if(u.getName().equals(nombre)) return u;
         }
         return null;
     }
 
     public void eraseUser(String nombre) {
-        bddUsuarios.remove(findUser(nombre));
+        bddUsers.remove(findUser(nombre));
     }
     public void eraseUser(User u) {
-        bddUsuarios.remove(u);
+        bddUsers.remove(u);
     }
 
 }
