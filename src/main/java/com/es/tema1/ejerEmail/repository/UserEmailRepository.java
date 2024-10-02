@@ -20,16 +20,25 @@ public class UserEmailRepository implements UserEmailRepositoryAPI {
 
     @Override
     public UserEmail getUserEmail(String email) {
-        return null;
+        //return bddUserEmail.stream().filter(user -> user.getEmail().equals(email)).findFirst().orElse(null);
+        UserEmail userReturn = null;
+        for (UserEmail u : bddUserEmail) {
+            if (u.getEmail().equals(email)){
+                userReturn = u;
+                break;
+            }
+        }
+        return userReturn;
     }
 
     @Override
     public UserEmail insertUserEmail(UserEmail u) {
-        return null;
+        bddUserEmail.add(u);
+        return getUserEmail(u.getEmail());
     }
 
     @Override
     public boolean deleteUserEmail(String email) {
-        return false;
+        return bddUserEmail.remove(getUserEmail(email));
     }
 }
