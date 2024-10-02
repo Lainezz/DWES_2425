@@ -24,11 +24,11 @@ public class UserEmailService {
         return u;
     }
 
-    public UserEmail insertUserEmail() {
+    public UserEmail insertUserEmail(String nombre, String email) {
         return null;
     }
 
-    public boolean deleteUserEmail(){
+    public boolean deleteUserEmail(String email){
         return false;
     }
 }

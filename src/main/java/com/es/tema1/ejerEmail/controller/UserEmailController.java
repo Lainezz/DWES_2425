@@ -23,11 +23,11 @@ public class UserEmailController {
         }
     }
 
-    public RespuestaHTTP insertUserEmail() {
+    public RespuestaHTTP insertUserEmail(String nombre, String email) {
 
     }
 
-    public RespuestaHTTP deleteUserEmail() {
+    public RespuestaHTTP deleteUserEmail(String email) {
 
     }
 
