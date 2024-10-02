@@ -69,17 +69,21 @@ public class UserRepository {
 Aquí se añade la lógica de negocio para validar que el correo del usuario no esté duplicado y que tenga un formato correcto.
 
 ```java
+import com.es.tema1.ejerCRUD.clases.User;
+
 public class UserService {
     private UserRepository userRepository = new UserRepository();
 
-    public void createUser(String name, String email) throws Exception {
+    public User createUser(String name, String email) throws Exception {
         if (!isValidEmail(email)) {
             throw new Exception("Email is not valid.");
         }
         if (userRepository.findByEmail(email).isPresent()) {
             throw new Exception("User with this email already exists.");
         }
-        userRepository.save(new User(name, email));
+        User u = new User(name, email);
+        userRepository.save(u);
+        return u;
     }
 
     public List<User> getAllUsers() {
@@ -101,49 +105,52 @@ public class UserService {
 ```
 
 ### 4. Crear la Capa de Controlador (Controller Layer)
-El controlador será el que interactúe con el usuario a través de la consola, simulando peticiones a un API REST. El controlador utilizará la capa de servicio para realizar las operaciones de usuario.
+El controlador será el encargado de recibir las diferentes peticiones del Main y de contestar con diferentes códigos de estado. El controlador utilizará la capa de servicio para realizar las operaciones de usuario.
 
 ```java
-import java.util.Scanner;
+import java.util.List;
 
 public class UserController {
     private UserService userService = new UserService();
-        
-    public void createUser(String name, String email) {
+
+    public User createUser(String name, String email) {
         try {
-            userService.createUser(name, email);
-            System.out.println("User created successfully.");
+            return userService.createUser(name, email);
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            return null;
         }
     }
 
-    public void viewAllUsers() {
-        for (User user : userService.getAllUsers()) {
-            System.out.println(user.getName() + " - " + user.getEmail());
+    public List<User> viewAllUsers() {
+        try {
+            return userService.getAllUsers();
+        } catch (Exception e) {
+            return null;
         }
     }
 
-    public void deleteUser(String email) {
+    public String deleteUser(String email) {
         try {
             userService.deleteUserByEmail(email);
-            System.out.println("User deleted successfully.");
+            return "Usuario Eliminado correctamente";
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            return e.getMessage();
         }
     }
 }
 ```
 
 ### 5. Crear la clase Main para ejecutar la aplicación
-Finalmente, se crea una clase principal para ejecutar la aplicación y probar las funcionalidades.
+Finalmente, se crea una clase principal para ejecutar la aplicación y probar las funcionalidades. Este main será el que interactúe con el usuario a través de la consola, simulando peticiones a un API REST.
 
 ```java
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
         UserController userController = new UserController();
         Scanner scanner = new Scanner(System.in);
-        
+
         while (true) {
             System.out.println("1. Create User");
             System.out.println("2. View All Users");
@@ -159,17 +166,27 @@ public class Main {
                     String name = scanner.nextLine();
                     System.out.println("Enter email:");
                     String email = scanner.nextLine();
-                    
+
                     userController.createUser(name, email);
                     break;
                 case "2":
                     System.out.println("All Users:");
-                    userController.viewAllUsers();
+
+                    List<User> users = userController.viewAllUsers();
+                    if(users != null) {
+                        for (User user : users) {
+                            System.out.println(user.getName() + " - " + user.getEmail());
+                        }
+                    } else {
+                        System.out.println("Usuarios no encontrados");
+                    }
+                    
                     break;
                 case "3":
                     System.out.println("Enter email of user to delete:");
                     String email = scanner.nextLine();
-                    userController.deleteUser(email);
+                    String mensaje = userController.deleteUser(email);
+                    System.out.println(mensaje);
                     break;
                 case "4":
                     return;

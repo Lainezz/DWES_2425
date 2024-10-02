@@ -42,10 +42,10 @@ La capa de servicios manejará la lógica de negocio. Esto incluye la validació
 
 ### 4. Capa de Controlador (Controller Layer)
 
-El controlador manejará el menú de la aplicación, donde los usuarios podrán iniciar sesión y, dependiendo de si son administradores, realizar diversas operaciones.
+El controlador manejará la interacción con el cliente (Main). Le enviará al cliente respuestas con diferentes códigos de estado para que el cliente pueda llevar a cabo las tareas oportunas.
 
 ### 5. Crear la clase Main para ejecutar la aplicación
-Finalmente, se crea una clase principal para ejecutar la aplicación y probar las funcionalidades.
+Finalmente, se crea una clase principal para ejecutar la aplicación y probar las funcionalidades. Contendrá el menú de la aplicación, donde los usuario podrán iniciar sesión y, dependiendo de si son administradores, realizar diversas operaciones.
 
 
 ## Conclusiones
