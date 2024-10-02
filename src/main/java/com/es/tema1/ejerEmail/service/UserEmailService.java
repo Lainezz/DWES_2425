@@ -14,9 +14,14 @@ public class UserEmailService {
 
     public UserEmail getUserEmail(String email) {
 
+        // Comprobamos que email no esté vacío
+        if(email == null || email.isEmpty()) return null;
 
+        // Obtenemos el UserEmail
+        UserEmail u = repository.getUserEmail(email);
 
-        return null;
+        // Devolvemos el UserEmail (puede ser null)
+        return u;
     }
 
     public UserEmail insertUserEmail() {
