@@ -34,6 +34,7 @@ public class UserEmailRepository implements UserEmailRepositoryAPI {
     @Override
     public UserEmail insertUserEmail(UserEmail u) {
         bddUserEmail.add(u);
+
         // return bddUserEmail.stream().filter(user -> user.getEmail().equals(u.getEmail())).findFirst().orElse(null);
         return getUserEmail(u.getEmail());
     }
