@@ -4,7 +4,7 @@ import com.es.tema1.ejerEmail.model.UserEmail;
 
 import java.util.ArrayList;
 
-public class UserEmailRepository implements UserEmailRepositoryAPI {
+public class UserEmailRepository implements BasicRepositoryAPI<String, UserEmail> {
 
     // Base de datos ficticia
     ArrayList<UserEmail> bddUserEmail;
@@ -19,7 +19,7 @@ public class UserEmailRepository implements UserEmailRepositoryAPI {
     }
 
     @Override
-    public UserEmail getUserEmail(String email) {
+    public UserEmail get(String email) {
         //return bddUserEmail.stream().filter(user -> user.getEmail().equals(email)).findFirst().orElse(null);
         UserEmail userReturn = null;
         for (UserEmail u : bddUserEmail) {
@@ -32,16 +32,16 @@ public class UserEmailRepository implements UserEmailRepositoryAPI {
     }
 
     @Override
-    public UserEmail insertUserEmail(UserEmail u) {
+    public UserEmail insert(UserEmail u) {
         bddUserEmail.add(u);
 
         // return bddUserEmail.stream().filter(user -> user.getEmail().equals(u.getEmail())).findFirst().orElse(null);
-        return getUserEmail(u.getEmail());
+        return get(u.getEmail());
     }
 
     @Override
-    public boolean deleteUserEmail(String email) {
+    public boolean delete(String email) {
         // return bddUserEmail.removeIf(u -> u.getEmail().equals(email));
-        return bddUserEmail.remove(getUserEmail(email));
+        return bddUserEmail.remove(get(email));
     }
 }

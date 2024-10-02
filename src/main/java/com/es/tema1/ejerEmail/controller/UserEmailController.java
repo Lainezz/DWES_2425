@@ -25,10 +25,27 @@ public class UserEmailController {
 
     public RespuestaHTTP insertUserEmail(String nombre, String email) {
 
+        try {
+            // TODO: Implementar la logica de insertUserEmail
+            UserEmail u = service.insertUserEmail(nombre, email);
+            return  u != null ?
+                    new RespuestaHTTP(200, "Usuario "+email+" insertado", u) :
+                    new RespuestaHTTP(400, "Usuario NO insertado");
+        } catch (Exception e) {
+            return new RespuestaHTTP(500, "Fatal internal Error");
+        }
     }
 
     public RespuestaHTTP deleteUserEmail(String email) {
+        try {
+            // TODO: Implementar la logica de deleteUserEmail
+            return service.deleteUserEmail(email) ?
+                    new RespuestaHTTP(200, "Usuario "+email+" eliminado") :
+                    new RespuestaHTTP(400, "Usuario NO eliminado");
 
+        } catch (Exception e) {
+            return new RespuestaHTTP(500, "Fatal internal Error");
+        }
     }
 
 }
