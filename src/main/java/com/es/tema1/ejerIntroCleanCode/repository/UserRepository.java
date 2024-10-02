@@ -11,6 +11,7 @@ public class UserRepository {
 
     // Constructor, simplemente inicializo el ArrayList
     public UserRepository() {
+        this.bddUsers = new ArrayList<>();
         bddUsers.add(new User("Diego", "1234"));
         bddUsers.add(new User("Juan", "1234"));
         bddUsers.add(new User("Paco", "1234"));
@@ -37,4 +38,18 @@ public class UserRepository {
         bddUsers.remove(u);
     }
 
+    public User addUser(User u) {
+        bddUsers.add(u);
+        return findUser(u.getName());
+    }
+
+    public User updateUser(String nombre, User modifiedUser) {
+
+        User oldUser = bddUsers.stream().filter(u -> u.getName().equals(nombre)).findFirst().orElse(null);
+        if(oldUser != null) {
+            oldUser.setName(modifiedUser.getName());
+            oldUser.setPass(modifiedUser.getPass());
+        }
+        return oldUser;
+    }
 }

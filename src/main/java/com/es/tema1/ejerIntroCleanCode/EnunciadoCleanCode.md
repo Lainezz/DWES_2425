@@ -38,6 +38,8 @@ public class User {
 Esta capa almacenará los usuarios en una estructura de datos en memoria, como una lista, y proporcionará métodos para crear, buscar y eliminar usuarios.
 
 ```java
+import com.es.tema1.ejerIntroCleanCode.clases.User;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -106,41 +108,8 @@ import java.util.Scanner;
 
 public class UserController {
     private UserService userService = new UserService();
-    private Scanner scanner = new Scanner(System.in);
-
-    public void start() {
-        while (true) {
-            System.out.println("1. Create User");
-            System.out.println("2. View All Users");
-            System.out.println("3. Delete User");
-            System.out.println("4. Exit");
-
-            String choice = scanner.nextLine();
-
-            switch (choice) {
-                case "1":
-                    createUser();
-                    break;
-                case "2":
-                    viewAllUsers();
-                    break;
-                case "3":
-                    deleteUser();
-                    break;
-                case "4":
-                    return;
-                default:
-                    System.out.println("Invalid choice.");
-            }
-        }
-    }
-
-    private void createUser() {
-        System.out.println("Enter name:");
-        String name = scanner.nextLine();
-        System.out.println("Enter email:");
-        String email = scanner.nextLine();
-
+        
+    public void createUser(String name, String email) {
         try {
             userService.createUser(name, email);
             System.out.println("User created successfully.");
@@ -149,17 +118,13 @@ public class UserController {
         }
     }
 
-    private void viewAllUsers() {
-        System.out.println("All Users:");
+    public void viewAllUsers() {
         for (User user : userService.getAllUsers()) {
             System.out.println(user.getName() + " - " + user.getEmail());
         }
     }
 
-    private void deleteUser() {
-        System.out.println("Enter email of user to delete:");
-        String email = scanner.nextLine();
-
+    public void deleteUser(String email) {
         try {
             userService.deleteUserByEmail(email);
             System.out.println("User deleted successfully.");
@@ -177,7 +142,41 @@ Finalmente, se crea una clase principal para ejecutar la aplicación y probar la
 public class Main {
     public static void main(String[] args) {
         UserController userController = new UserController();
-        userController.start();
+        Scanner scanner = new Scanner(System.in);
+        
+        while (true) {
+            System.out.println("1. Create User");
+            System.out.println("2. View All Users");
+            System.out.println("3. Delete User");
+            System.out.println("4. Exit");
+
+            String choice = scanner.nextLine();
+
+            switch (choice) {
+                case "1":
+                    System.out.println("Create user:");
+                    System.out.println("Enter name:");
+                    String name = scanner.nextLine();
+                    System.out.println("Enter email:");
+                    String email = scanner.nextLine();
+                    
+                    userController.createUser(name, email);
+                    break;
+                case "2":
+                    System.out.println("All Users:");
+                    userController.viewAllUsers();
+                    break;
+                case "3":
+                    System.out.println("Enter email of user to delete:");
+                    String email = scanner.nextLine();
+                    userController.deleteUser(email);
+                    break;
+                case "4":
+                    return;
+                default:
+                    System.out.println("Invalid choice.");
+            }
+        }
     }
 }
 ```
