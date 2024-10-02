@@ -12,7 +12,6 @@ public class UserEmailController {
     }
 
     public RespuestaHTTP getUserEmail(String email) {
-
         try {
             UserEmail u = service.getUserEmail(email);
 
@@ -22,6 +21,13 @@ public class UserEmailController {
         } catch (Exception e) {
             return new RespuestaHTTP(500, "Fatal internal Error");
         }
+    }
+
+    public RespuestaHTTP insertUserEmail() {
+
+    }
+
+    public RespuestaHTTP deleteUserEmail() {
 
     }
 
