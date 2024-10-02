@@ -1,6 +1,6 @@
 package com.es.tema1.ejerIntroCleanCode.controller;
 
-import com.es.tema1.ejerCRUD.clases.ResponseEntity;
+import com.es.tema1.ejerIntroCleanCode.clases.ResponseEntity;
 import com.es.tema1.ejerIntroCleanCode.clases.User;
 import com.es.tema1.ejerIntroCleanCode.services.UserService;
 

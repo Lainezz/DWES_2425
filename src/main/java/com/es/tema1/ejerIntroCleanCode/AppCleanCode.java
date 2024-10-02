@@ -1,5 +1,6 @@
 package com.es.tema1.ejerIntroCleanCode;
 
+import com.es.tema1.ejerIntroCleanCode.clases.ResponseEntity;
 import com.es.tema1.ejerIntroCleanCode.controller.UserController;
 
 public class AppCleanCode {
@@ -9,7 +10,7 @@ public class AppCleanCode {
 
 
         UserController uc = new UserController();
-        uc.addUser("lolito", "1234");
+        ResponseEntity re = uc.addUser("lolito", "1234");
 
         uc.deleteUser("lolito");
 
