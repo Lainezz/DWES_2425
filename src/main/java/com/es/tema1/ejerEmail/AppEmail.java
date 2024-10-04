@@ -9,7 +9,6 @@ public class AppEmail {
 
 
     public static void main(String[] args) {
-        // TODO:
 
         UserEmailController controller = new UserEmailController();
 
@@ -26,37 +25,64 @@ public class AppEmail {
                     \t3. Eliminar usuario
                     \t0. Salir
                     """);
-            // TODO: Leer por teclado opcion
+
             opcion = scan.nextLine();
 
             switch (opcion) {
                 case "1":
+                    System.out.println("Insertar usuario");
+                    System.out.println("Inserte el nuevo nombre: ");
+                    String newNombre = scan.nextLine();
+                    System.out.println("Inserte el nuevo email: ");
+                    String newEmail = scan.nextLine();
 
+                    RespuestaHTTP rInsert = controller.insertUserEmail(newNombre, newEmail);
+
+                    if (rInsert.getCodigoRespuesta() == 200) {
+                        System.out.println(rInsert.getUserEmail());
+                    } else {
+                        System.out.println(rInsert.getMensajeRespuesta());
+                    }
+
+
+                    break;
                 case "2":
                     System.out.println("Inserte el email: ");
                     // TODO: leer por teclado
                     String email = scan.nextLine();
-                    RespuestaHTTP r = controller.getUserEmail(email);
+                    RespuestaHTTP rGet = controller.getUserEmail(email);
 
-                    if(r.getCodigoRespuesta() == 200) {
-                        System.out.println(r.getUserEmail());
+                    if(rGet.getCodigoRespuesta() == 200) {
+                        System.out.println(rGet.getUserEmail());
                     } else {
-                        System.out.println(r.getMensajeRespuesta());
+                        System.out.println(rGet.getMensajeRespuesta());
                     }
                     break;
 
                 case "3":
+
+                    System.out.println("Eliminar usuario");
+                    System.out.println("Inserte el email a eliminar: ");
+                    String bajaEmail = scan.nextLine();
+
+                    RespuestaHTTP rEliminar = controller.deleteUserEmail(bajaEmail);
+
+                    if(rEliminar.getCodigoRespuesta() == 200) {
+                        System.out.println(rEliminar.getUserEmail());
+                    } else {
+                        System.out.println(rEliminar.getMensajeRespuesta());
+                    }
+
+                    break;
+
 
                 case "0":
                     System.out.println("Adios");
                     break;
                 default:
                     System.out.println("Error! Elija opción entre 0 y 3");
+                    break;
             }
-
         }
-
-
-
     }
 }
