@@ -21,7 +21,7 @@ public class UserEmailController {
                 return new RespuestaHTTP(400, "Bad Request");
 
                 // TODO: Llamar al método del service
-            boolean respuestaService = service.login(email, password);
+            boolean respuestaService = service.checkUserEmail(email, password);
 
             return respuestaService ?
                     new RespuestaHTTP(200, "OK") :
@@ -36,7 +36,7 @@ public class UserEmailController {
 
     public RespuestaHTTP getUserEmail(String email) {
         try {
-            UserEmail u = service.getUserEmail(email);
+            UserEmail u = service.get(email);
 
             return u != null ?
                     new RespuestaHTTP(200, "TODO OK", u) :
@@ -50,7 +50,7 @@ public class UserEmailController {
 
         try {
             // TODO: Implementar la logica de insertUserEmail
-            UserEmail u = service.insertUserEmail(nombre, email, password);
+            UserEmail u = service.insert(new UserEmail(nombre, email, password));
             return  u != null ?
                     new RespuestaHTTP(200, "Usuario "+email+" insertado", u) :
                     new RespuestaHTTP(400, "Usuario NO insertado");
@@ -62,7 +62,7 @@ public class UserEmailController {
     public RespuestaHTTP deleteUserEmail(String email) {
         try {
             // TODO: Implementar la logica de deleteUserEmail
-            return service.deleteUserEmail(email) ?
+            return service.delete(email) ?
                     new RespuestaHTTP(200, "Usuario "+email+" eliminado") :
                     new RespuestaHTTP(400, "Usuario NO eliminado");
 
