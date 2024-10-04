@@ -3,6 +3,7 @@ package com.es.tema1.ejerEmail.service;
 import com.es.tema1.ejerEmail.model.UserEmail;
 import com.es.tema1.ejerEmail.repository.BasicRepositoryAPI;
 import com.es.tema1.ejerEmail.repository.UserEmailRepository;
+import com.es.tema1.ejerEmail.utils.EncryptUtil;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -47,8 +48,11 @@ public class UserEmailService {
         String regexEmail = "^[\\w-]+@\\w+\\.(com|es)$";
         if (!email.matches(regexEmail)) return null;
 
+        // Encripto la contraseña
+        String passHashed = EncryptUtil.encryptPassword(password);
+
         // Insertar usuario
-        return repository.insert(new UserEmail(nombre, email, password));
+        return repository.insert(new UserEmail(nombre, email, passHashed));
     }
 
     public boolean deleteUserEmail(String email){
