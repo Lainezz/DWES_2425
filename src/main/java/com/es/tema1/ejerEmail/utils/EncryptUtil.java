@@ -17,7 +17,7 @@ public class EncryptUtil {
 
         try {
             // MessageDigest contiene los metodos para poder encriptar
-            MessageDigest digest = MessageDigest.getInstance("SHA2-256");
+            MessageDigest digest = MessageDigest.getInstance("SHA-256");
 
             //
             byte[] hashBytes = digest.digest(password.getBytes(StandardCharsets.UTF_8));

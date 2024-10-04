@@ -16,6 +16,8 @@ public class UserEmailService {
         this.repository = new UserEmailRepository();
     }
 
+
+
     public UserEmail getUserEmail(String email) {
 
         // Comprobamos que email no esté vacío

@@ -11,6 +11,25 @@ public class UserEmailController {
         this.service = new UserEmailService();
     }
 
+    public RespuestaHTTP login(String email, String password) {
+
+        try {
+
+            if(email == null || email.isEmpty())
+                return new RespuestaHTTP(400, "Bad Request");
+            if(password == null || password.isEmpty())
+                return new RespuestaHTTP(400, "Bad Request");
+
+                // TODO: Llamar al método del service
+            boolean respuestaService = service.login(email, password);
+
+        } catch (Exception e) {
+            return new RespuestaHTTP(500, "Server Error");
+        }
+
+    }
+
+
     public RespuestaHTTP getUserEmail(String email) {
         try {
             UserEmail u = service.getUserEmail(email);
