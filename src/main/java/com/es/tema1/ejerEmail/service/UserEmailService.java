@@ -23,9 +23,17 @@ public class UserEmailService {
         String regexEmail = "^[\\w-]+@\\w+\\.(com|es)$";
         if (!email.matches(regexEmail)) return false;
 
-        // 2º
+        // 2º Llamar a getUser del repository
+        UserEmail u = repository.get(email);
 
-        return false;
+        // 3º Comprobar que ese email existe
+        if (u == null) return false;
+
+        // 4º Encriptar la password y comprobar que coincide con el de la base de datos
+        String passEncrypted = EncryptUtil.encryptPassword(password);
+
+        // Compruebo que ambos campos coinciden
+        return email.equals(u.getEmail()) && passEncrypted.equals(u.getPassword());
     }
 
     public UserEmail getUserEmail(String email) {

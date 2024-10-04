@@ -23,6 +23,10 @@ public class UserEmailController {
                 // TODO: Llamar al método del service
             boolean respuestaService = service.login(email, password);
 
+            return respuestaService ?
+                    new RespuestaHTTP(200, "OK") :
+                    new RespuestaHTTP(401, "No autorizado");
+
         } catch (Exception e) {
             return new RespuestaHTTP(500, "Server Error");
         }

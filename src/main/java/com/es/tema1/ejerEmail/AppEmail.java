@@ -23,6 +23,7 @@ public class AppEmail {
                     \t1. Insertar Usuario
                     \t2. Obtener usuario
                     \t3. Eliminar usuario
+                    \t4. Login
                     \t0. Salir
                     """);
 
@@ -54,7 +55,7 @@ public class AppEmail {
                     String email = scan.nextLine();
                     RespuestaHTTP rGet = controller.getUserEmail(email);
 
-                    if(rGet.getCodigoRespuesta() == 200) {
+                    if (rGet.getCodigoRespuesta() == 200) {
                         System.out.println(rGet.getUserEmail());
                     } else {
                         System.out.println(rGet.getMensajeRespuesta());
@@ -69,7 +70,7 @@ public class AppEmail {
 
                     RespuestaHTTP rEliminar = controller.deleteUserEmail(bajaEmail);
 
-                    if(rEliminar.getCodigoRespuesta() == 200) {
+                    if (rEliminar.getCodigoRespuesta() == 200) {
                         System.out.println(rEliminar.getUserEmail());
                     } else {
                         System.out.println(rEliminar.getMensajeRespuesta());
@@ -78,6 +79,24 @@ public class AppEmail {
                     break;
 
 
+                case "4":
+                    System.out.println("Login");
+
+                    System.out.println("Inserte el email: ");
+                    String loginEmail = scan.nextLine();
+                    System.out.println("Inserte la password: ");
+                    String loginPass = scan.nextLine();
+
+                    RespuestaHTTP rLogin = controller.login(loginEmail, loginPass);
+
+                    if (rLogin.getCodigoRespuesta() == 200) {
+                        System.out.println(rLogin.getMensajeRespuesta());
+                    } else {
+                        System.out.println(rLogin.getMensajeRespuesta());
+                    }
+
+
+                    break;
                 case "0":
                     System.out.println("Adios");
                     break;
