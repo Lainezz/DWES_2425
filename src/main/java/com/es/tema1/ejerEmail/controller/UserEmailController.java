@@ -23,11 +23,11 @@ public class UserEmailController {
         }
     }
 
-    public RespuestaHTTP insertUserEmail(String nombre, String email) {
+    public RespuestaHTTP insertUserEmail(String nombre, String email, String password) {
 
         try {
             // TODO: Implementar la logica de insertUserEmail
-            UserEmail u = service.insertUserEmail(nombre, email);
+            UserEmail u = service.insertUserEmail(nombre, email, password);
             return  u != null ?
                     new RespuestaHTTP(200, "Usuario "+email+" insertado", u) :
                     new RespuestaHTTP(400, "Usuario NO insertado");

@@ -6,7 +6,7 @@ public class UserEmail {
 
     private String nombre;
     private String email;
-    private String password;
+    private String password; // La contrasena se almacena encriptada
 
     public UserEmail(String nombre, String email) {
         this.nombre = nombre;

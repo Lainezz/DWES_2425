@@ -35,8 +35,10 @@ public class AppEmail {
                     String newNombre = scan.nextLine();
                     System.out.println("Inserte el nuevo email: ");
                     String newEmail = scan.nextLine();
+                    System.out.println("Inserte la nueva password: ");
+                    String newPass = scan.nextLine();
 
-                    RespuestaHTTP rInsert = controller.insertUserEmail(newNombre, newEmail);
+                    RespuestaHTTP rInsert = controller.insertUserEmail(newNombre, newEmail, newPass);
 
                     if (rInsert.getCodigoRespuesta() == 200) {
                         System.out.println(rInsert.getUserEmail());

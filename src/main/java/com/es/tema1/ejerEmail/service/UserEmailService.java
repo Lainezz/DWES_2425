@@ -27,11 +27,12 @@ public class UserEmailService {
         return u;
     }
 
-    public UserEmail insertUserEmail(String nombre, String email) {
+    public UserEmail insertUserEmail(String nombre, String email, String password) {
 
         // Compruebo que el email y nombre no vienen vacios
         if(email == null || email.trim().isEmpty()) return null;
         if(nombre == null || nombre.trim().isEmpty()) return null;
+        if(password == null || password.trim().isEmpty()) return null;
 
         // Compruebo que la longitud del nombre es la adecuada
         if(nombre.length() > 15) return null;
@@ -47,7 +48,7 @@ public class UserEmailService {
         if (!email.matches(regexEmail)) return null;
 
         // Insertar usuario
-        return repository.insert(new UserEmail(nombre, email));
+        return repository.insert(new UserEmail(nombre, email, password));
     }
 
     public boolean deleteUserEmail(String email){
