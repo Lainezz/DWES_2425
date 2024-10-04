@@ -17,6 +17,16 @@ public class UserEmailService {
     }
 
 
+    public boolean login(String email, String password) {
+
+        // 1º Campos OK
+        String regexEmail = "^[\\w-]+@\\w+\\.(com|es)$";
+        if (!email.matches(regexEmail)) return false;
+
+        // 2º
+
+        return false;
+    }
 
     public UserEmail getUserEmail(String email) {
 
