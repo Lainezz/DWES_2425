@@ -6,10 +6,16 @@ public class UserEmail {
 
     private String nombre;
     private String email;
+    private String password;
 
     public UserEmail(String nombre, String email) {
         this.nombre = nombre;
         this.email = email;
+    }
+    public UserEmail(String nombre, String email, String password) {
+        this.nombre = nombre;
+        this.email = email;
+        this.password = password;
     }
 
     public String getNombre() {
@@ -26,6 +32,14 @@ public class UserEmail {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     @Override
@@ -48,6 +62,7 @@ public class UserEmail {
         final StringBuilder sb = new StringBuilder("UserEmail{");
         sb.append("nombre='").append(nombre).append('\'');
         sb.append(", email='").append(email).append('\'');
+        sb.append(", password='").append(password).append('\'');
         sb.append('}');
         return sb.toString();
     }
