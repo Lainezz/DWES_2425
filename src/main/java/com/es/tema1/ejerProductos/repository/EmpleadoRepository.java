@@ -2,25 +2,34 @@ package com.es.tema1.ejerProductos.repository;
 
 import com.es.tema1.ejerProductos.model.Empleado;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class EmpleadoRepository {
+public class EmpleadoRepository implements GenericRepositoryAPI<String, Empleado> {
+
+    private ArrayList<Empleado> bddEmpleados;
+
+    public EmpleadoRepository() {
+        this.bddEmpleados = new ArrayList<>();
+    }
 
     // C
-    public Empleado insert(Empleado empleado)  {
-
-        return null;
+    public Empleado insert(Empleado empleado) {
+        this.bddEmpleados.add(empleado);
+        return get(empleado.getDni());
     }
 
     // R
     public Empleado get(String key) {
-
-        return null;
+        return bddEmpleados
+                .stream()
+                .filter(e -> e.getDni().equals(key))
+                .findFirst()
+                .orElse(null);
     }
 
     public List<Empleado> getAll() {
-
-        return null;
+        return bddEmpleados;
     }
 
     // U
@@ -28,7 +37,11 @@ public class EmpleadoRepository {
 
     // D
     public void delete(String key) {
-
-
+        Empleado empToDelete = bddEmpleados
+                .stream()
+                .filter(e -> e.getDni().equals(key))
+                .findFirst()
+                .orElse(null);
+        bddEmpleados.remove(empToDelete);
     }
 }
