@@ -8,6 +8,8 @@
 
         <!-- Qué clases queremos mapear -->
         <class>com.es.tema1.hibernate.ejemploHibernateClase.Pelicula</class>
+        <class>com.es.tema1.hibernate.ejemploHibernateClase.Cine</class>
+        <class>com.es.tema1.hibernate.ejemploHibernateClase.Direccion</class>
 
         <properties>
             <!-- Qué BDD usar -->
@@ -24,15 +26,15 @@
             <!-- ¿Qué pasa cuando inicio la aplicación? -->
             <property name="hibernate.hbm2ddl.auto" value="create-drop"/>
 
-            <property name="javax.persistence.sql-load-script-source" value="META-INF/import.sql"/>
+        <!--<property name="javax.persistence.sql-load-script-source" value="META-INF/import.sql"/>-->
 
-        </properties>
+    </properties>
 
-    </persistence-unit>
+</persistence-unit>
 
-    <persistence-unit name="unit_Empleados" transaction-type="RESOURCE_LOCAL">
+<persistence-unit name="unit_Empleados" transaction-type="RESOURCE_LOCAL">
 
-        <!-- Qué clases queremos mapear -->
+    <!-- Qué clases queremos mapear -->
         <class>com.es.tema1.hibernate.crudHibernate.model.Empleado</class>
 
         <properties>

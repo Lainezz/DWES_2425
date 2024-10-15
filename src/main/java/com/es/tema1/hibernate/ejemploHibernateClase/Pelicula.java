@@ -1,37 +1,43 @@
 package com.es.tema1.hibernate.ejemploHibernateClase;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.Date;
 
 @Entity
-@Table
+@Table(name="peliculas")
 public class Pelicula {
 
     @Id
-    private String id;
-    @Column
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "titulo", length = 50, unique = true, nullable = false)
     private String titulo;
-    @Column
+    @Column(name = "autor", length = 50, nullable = false)
     private String autor;
-
-    @Column
+    @Transient
     private String autores;
-    @Column
+    @Column(name = "fecha_lanzamiento", nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date fechaLanzamiento;
 
     public Pelicula() {}
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getAutores() {
+        return autores;
+    }
+
+    public void setAutores(String autores) {
+        this.autores = autores;
     }
 
     public String getTitulo() {

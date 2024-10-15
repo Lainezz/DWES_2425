@@ -11,7 +11,36 @@ public class AppMain {
         EntityManagerFactory emf = Persistence.createEntityManagerFactory("UnidadMySQL");
         EntityManager em = emf.createEntityManager();
 
-        System.out.println("");
+        // 1º Empezar una transaccion
+        em.getTransaction().begin();
+
+        // 2º Se realizan las operaciones que queramos
+        // Vamos a hacer un insert
+        Direccion dir = new Direccion("Calle Senda Perdida", 8, "11010", null);
+        Cine cine = new Cine("Yelmo Cines Bahia Sur", 500, dir);
+        //em.persist(dir);
+        em.persist(cine);
+
+        // 3º Para reflejar los cambios en la BD... commit()
+        em.getTransaction().commit();
+
+        // em.close();
+
+
+        // HACER CONSULTA BDD
+        // 1º Abrir la transaccción
+        // em.getTransaction().begin();
+
+        // 2º Realizar las operaciones. CONSULTA
+        Cine cineBusqueda = em.find(Cine.class, 1);
+
+        System.out.println(cineBusqueda.getNombre());
+        System.out.println(cineBusqueda.getDireccion().getCalle());
+
+
+
+
+
 
     }
 }
