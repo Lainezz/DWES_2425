@@ -16,8 +16,9 @@ public class AppMain {
 
         // 2º Se realizan las operaciones que queramos
         // Vamos a hacer un insert
+        Director director = new Director("Pepito", "19019019L", null);
         Direccion dir = new Direccion("Calle Senda Perdida", 8, "11010", null);
-        Cine cine = new Cine("Yelmo Cines Bahia Sur", 500, dir);
+        Cine cine = new Cine("Yelmo Cines Bahia Sur", 500, dir, director);
         //em.persist(dir);
         em.persist(cine);
 

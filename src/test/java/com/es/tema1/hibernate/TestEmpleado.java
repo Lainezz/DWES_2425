@@ -1,5 +1,6 @@
 package com.es.tema1.hibernate;
 
+import com.es.tema1.hibernate.crudHibernate.model.Departamento;
 import com.es.tema1.hibernate.crudHibernate.model.Empleado;
 import com.es.tema1.hibernate.crudHibernate.service.EmpleadosService;
 import com.es.tema1.hibernate.crudHibernate.utils.HibernateUtil;
@@ -44,13 +45,12 @@ public class TestEmpleado {
     void testInsert() {
 
         EmpleadosService service = new EmpleadosService();
-        service.insert();
+        Empleado e = new Empleado("Diego", 34, Departamento.INFORMATICA);
+        service.insert(e);
 
         List<Empleado> lista = service.findByEdad(34);
 
         lista.forEach(System.out::println);
-
-
 
     }
 }

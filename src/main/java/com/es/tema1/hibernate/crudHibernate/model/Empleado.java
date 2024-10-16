@@ -18,13 +18,17 @@ public class Empleado implements Serializable {
     @Column(name = "edad")
     private int edad;
 
+    @Enumerated(EnumType.STRING)
+    private Departamento dpto;
+
     public Empleado() {
 
     }
 
-    public Empleado(String nombre, int edad) {
+    public Empleado(String nombre, int edad, Departamento dpto) {
         this.nombre = nombre;
         this.edad = edad;
+        this.dpto = dpto;
     }
 
     public Long getId() {

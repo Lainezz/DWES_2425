@@ -22,15 +22,28 @@ public class Cine {
     @JoinColumn(name = "id_direccion")
     private Direccion direccion;
 
+    @OneToOne(cascade = CascadeType.PERSIST, fetch = FetchType.LAZY)
+    @JoinColumn(name = "dni_director")
+    private Director director;
+
 
     public Cine() {
 
     }
 
-    public Cine(String nombre, int capacidad, Direccion direccion) {
+    public Cine(String nombre, int capacidad, Direccion direccion, Director dir) {
         this.nombre = nombre;
         this.capacidad = capacidad;
         this.direccion = direccion;
+        this.director = dir;
+    }
+
+    public Director getDirector() {
+        return director;
+    }
+
+    public void setDirector(Director director) {
+        this.director = director;
     }
 
     public Long getId() {
