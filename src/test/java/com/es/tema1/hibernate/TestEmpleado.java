@@ -49,8 +49,9 @@ public class TestEmpleado {
         service.insert(e);
 
         List<Empleado> lista = service.findByEdad(34);
-
         lista.forEach(System.out::println);
 
+        Empleado e2 = service.getEmpleado(3L);
+        System.out.println(e2);
     }
 }

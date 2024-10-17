@@ -18,6 +18,7 @@ public class HibernateUtil {
 
     // Método para obtener el EntityManagerFactory según el nombre del Persistence Unit
     public static EntityManagerFactory getEntityManagerFactory(String persistenceUnitName) {
+
         return entityManagerFactories.computeIfAbsent(persistenceUnitName, puName -> {
             try {
                 return Persistence.createEntityManagerFactory(puName);
@@ -38,8 +39,20 @@ public class HibernateUtil {
         entityManagerFactories.forEach((puName, emf) -> {
             if (emf != null && emf.isOpen()) {
                 emf.close();
+                //entityManagerFactories.remove(puName);
                 logger.log(Level.INFO, "EntityManagerFactory para {0} cerrado correctamente.", puName);
             }
         });
+    }
+
+    public static void closeEntityManager(EntityManager em) {
+        try {
+            if(em != null && em.isOpen()) {
+                em.close();
+                //logger.log(Level.INFO, "EntityManagerFactory para {0} cerrado correctamente.", puName);
+            }
+        } catch (IllegalStateException e) {
+            e.getStackTrace();
+        }
     }
 }

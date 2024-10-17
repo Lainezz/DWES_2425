@@ -1,16 +1,21 @@
-package com.es.tema1.hibernate.crudHibernate.repository;
+package com.es.tema1.hibernate.crudHibernate.repository.api;
+
+import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
 public interface BasicRepositoryAPI<K, T> {
 
 
+    EntityManager getEntityManager();
+    void closeEntityManager(EntityManager em);
+
     /**
      * Inserta nuevo objeto en BDD
      * @param x
      * @return
      */
-    T insert(T x);
+    T insert(T x) throws Exception;
 
     /**
      * Obtiene un registro de la BDD
